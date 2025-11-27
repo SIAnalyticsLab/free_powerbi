@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Power Query Cleaning Checklist — SI Analytics</title>
+
+<style>
+    :root {
+        --teal: #0F766E;
+        --navy: #0F172A;
+        --gold: #FACC15;
+        --light-gray: #f5f7fa;
+    }
+
+    body {
+        margin: 0;
+        font-family: "Poppins", Arial, sans-serif;
+        background: var(--light-gray);
+        color: var(--navy);
+        line-height: 1.7;
+    }
+
+    header {
+        background: var(--navy);
+        color: white;
+        padding: 50px 20px;
+        text-align: center;
+    }
+
+    header h1 {
+        margin: 0;
+        font-size: 2.6rem;
+        font-weight: 700;
+    }
+
+    header p {
+        font-size: 1.15rem;
+        margin-top: 10px;
+        opacity: 0.8;
+    }
+
+    .container {
+        width: 90%;
+        max-width: 1100px;
+        margin: 40px auto;
+        background: white;
+        padding: 40px;
+        border-radius: 14px;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+    }
+
+    h2 {
+        border-left: 6px solid var(--teal);
+        padding-left: 15px;
+        font-size: 1.7rem;
+        margin-top: 60px;
+        color: var(--navy);
+    }
+
+    .step {
+        margin-bottom: 40px;
+        padding: 25px;
+        border-left: 4px solid var(--gold);
+        background: #ffffff;
+        border-radius: 8px;
+        transition: 0.3s;
+    }
+
+    .step:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 4px 14px rgba(0,0,0,0.07);
+    }
+
+    .step h3 {
+        margin-top: 0;
+        font-size: 1.4rem;
+        color: var(--teal);
+    }
+
+    .step img {
+        width: 100%;
+        margin-top: 15px;
+        border-radius: 10px;
+        box-shadow: 0 5px 12px rgba(0,0,0,0.1);
+    }
+
+    footer {
+        margin-top: 60px;
+        padding: 30px;
+        text-align: center;
+        background: var(--navy);
+        color: white;
+        font-size: 0.9rem;
+    }
+
+    .btn-top {
+        display: inline-block;
+        margin-top: 25px;
+        padding: 10px 20px;
+        background: var(--teal);
+        color: white;
+        text-decoration: none;
+        border-radius: 8px;
+        transition: 0.3s;
+    }
+
+    .btn-top:hover {
+        background: var(--gold);
+        color: var(--navy);
+    }
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>Power Query Data Cleaning Checklist</h1>
+    <p>A clean, step-by-step guide for first-time users — Powered by SI Analytics</p>
+</header>
+
+<div class="container">
+
+    <h2>1. Remove Duplicates</h2>
+    <div class="step">
+        <h3>Steps</h3>
+        <p>1. Select the column(s).<br>
+        2. Go to <strong>Home → Remove Rows → Remove Duplicates</strong>.<br>
+        3. Power Query keeps the first occurrence and removes the rest.</p>
+        <img src="images/remove-duplicates.png" alt="Remove Duplicates Screenshot">
+    </div>
+
+    <h2>2. Change Data Types</h2>
+    <div class="step">
+        <h3>Steps</h3>
+        <p>1. Select the column.<br>
+        2. Go to <strong>Home → Data Type</strong>.<br>
+        3. Select Text, Number, Date, Date/Time, etc.</p>
+        <img src="images/change-datatypes.png" alt="Change Data Types Screenshot">
+    </div>
+
+    <h2>3. Extract Year / Month from Dates</h2>
+    <div class="step">
+        <h3>Steps</h3>
+        <p>1. Select your date column.<br>
+        2. Go to <strong>Add Column → Date</strong>.<br>
+        3. Choose <strong>Year</strong>, <strong>Month</strong>, or <strong>Day</strong>.</p>
+        <img src="images/extract-date.png" alt="Extract Date Screenshot">
+    </div>
+
+    <h2>4. Split Column by Delimiter</h2>
+    <div class="step">
+        <h3>Steps</h3>
+        <p>1. Select the column.<br>
+        2. Go to <strong>Home → Split Column → By Delimiter</strong>.<br>
+        3. Select comma, space, semicolon, or custom delimiter.</p>
+        <img src="images/split-column.png" alt="Split Column Screenshot">
+    </div>
+
+    <h2>5. Fill Down / Replace Values</h2>
+    <div class="step">
+        <h3>Fill Down</h3>
+        <p>1. Select column.<br>
+        2. Go to <strong>Transform → Fill → Down</strong>.</p>
+
+        <h3>Replace Values</h3>
+        <p>1. Select column.<br>
+        2. Go to <strong>Transform → Replace Values</strong>.<br>
+        3. Enter find + replace text.</p>
+
+        <img src="images/fill-replace.png" alt="Fill Down Screenshot">
+    </div>
+
+    <h2>6. Trim & Clean Text Fields</h2>
+    <div class="step">
+        <h3>Steps</h3>
+        <p>1. Select the column.<br>
+        2. Go to <strong>Transform → Format → Trim</strong>.<br>
+        3. Repeat with <strong>Clean</strong>.</p>
+        <img src="images/trim-clean.png" alt="Trim Clean Screenshot">
+    </div>
+
+    <h2>7. Append Queries (Stack Tables)</h2>
+    <div class="step">
+        <h3>Steps</h3>
+        <p>1. Go to <strong>Home → Append Queries</strong>.<br>
+        2. Select the tables you want to stack.<br>
+        3. Click <strong>OK</strong>.</p>
+        <img src="images/append.png" alt="Append Queries Screenshot">
+    </div>
+
+    <h2>8. Merge Queries (Join Tables)</h2>
+    <div class="step">
+        <h3>Steps</h3>
+        <p>1. Go to <strong>Home → Merge Queries</strong>.<br>
+        2. Choose the second table.<br>
+        3. Select matching columns.<br>
+        4. Choose the join type (Left join by default).<br>
+        5. Expand the merged table to bring in new fields.</p>
+        <img src="images/merge.png" alt="Merge Queries Screenshot">
+    </div>
+
+    <a href="#" class="btn-top">Back to Top</a>
+
+</div>
+
+<footer>
+    © 2025 SI Analytics — Data Made Simple. Insights Made Powerful.
+</footer>
+
+</body>
+</html>
