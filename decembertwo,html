@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>December 2 Task — SI Analytics Power BI Learning Journey</title>
+
+<!-- SI Analytics Theme Styling -->
+<style>
+    body {
+        font-family: "Segoe UI", Arial, sans-serif;
+        line-height: 1.6;
+        margin: 0;
+        padding: 0;
+        background-color: #f7f9fc;
+        color: #0F172A;
+    }
+    .container {
+        max-width: 900px;
+        margin: auto;
+        padding: 30px;
+    }
+    h1, h2, h3 {
+        color: #0F766E;
+    }
+    code, pre {
+        background: #e8f1ef;
+        padding: 8px 12px;
+        border-radius: 6px;
+        display: block;
+        white-space: pre-wrap;
+        margin-bottom: 15px;
+        border-left: 4px solid #0F766E;
+    }
+    a {
+        color: #0F766E;
+        font-weight: 600;
+    }
+    .section {
+        background: white;
+        padding: 25px;
+        border-radius: 10px;
+        margin-bottom: 25px;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    }
+    .task-box {
+        background: #f0fdfa;
+        padding: 20px;
+        border-left: 5px solid #0F766E;
+        margin-bottom: 20px;
+        border-radius: 8px;
+    }
+</style>
+</head>
+
+<body>
+<div class="container">
+
+    <h1>⭐ December 2 Task — SI Analytics Power BI Learning Journey</h1>
+    <h2>Theme: Calculated Columns + Enriching Your GDP Dataset</h2>
+
+    <div class="section">
+        <p>Congratulations on completing the December 1 tasks! Your consistency is what builds mastery — and today, we take the next strategic step by learning how to <strong>add intelligence to your dataset using Calculated Columns.</strong></p>
+    </div>
+
+    <div class="section">
+        <h2>📘 Daily Reading</h2>
+        <p><a href="https://learn.microsoft.com/en-us/power-bi/transform-model/desktop-tutorial-create-calculated-columns" target="_blank">
+        Create Calculated Columns in Power BI Desktop</a></p>
+
+        <p>This reading will help you understand:</p>
+        <ul>
+            <li>What calculated columns are</li>
+            <li>How they differ from measures</li>
+            <li>When and why to use them</li>
+            <li>How to enrich your model with additional business logic</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>🎥 Weekly Video Review</h2>
+        <p><a href="https://www.youtube.com/watch?v=kFBDr1LrHcg" target="_blank">
+        Power BI for Beginners — Day 1</a></p>
+    </div>
+
+    <div class="section">
+        <h2>📊 Dataset for Today</h2>
+        <p>Use the GDP dataset, already:</p>
+        <ul>
+            <li>Renamed to <strong>gdp</strong></li>
+            <li>Converted from <strong>wide → long</strong></li>
+            <li>Variables include: <code>geo</code>, <code>country</code>, <code>year</code>, <code>gdp</code></li>
+        </ul>
+        <p>Source: <a href="https://www.gapminder.org/data/" target="_blank">Gapminder GDP per capita</a></p>
+    </div>
+
+    <div class="section">
+        <h2>⭐ What New Columns Can Be Created from the GDP Dataset?</h2>
+        <p>Here are highly useful, realistic, and development-focused calculated columns you can add:</p>
+
+        <h3>1️⃣ GDP Category (Low / Middle / High Income)</h3>
+        <pre><code>GDP Category =
+IF(gdp[gdp] &lt; 2000, "Low Income",
+    IF(gdp[gdp] &lt; 10000, "Middle Income", "High Income")
+)</code></pre>
+
+        <h3>2️⃣ Decade Column</h3>
+        <pre><code>Decade =
+INT(gdp[year] / 10) * 10</code></pre>
+
+        <h3>3️⃣ Century Column</h3>
+        <pre><code>Century =
+"Century " &amp; INT(gdp[year] / 100) + 1</code></pre>
+
+        <h3>4️⃣ Country Initials</h3>
+        <pre><code>Country Initials =
+CONCATENATE(LEFT(gdp[country],1), RIGHT(gdp[country],1))</code></pre>
+
+        <h3>5️⃣ GDP Rounded (for cleaner visuals)</h3>
+        <pre><code>GDP Rounded =
+ROUND(gdp[gdp],0)</code></pre>
+
+        <h3>6️⃣ GDP in Thousands (K)</h3>
+        <pre><code>GDP (K) =
+gdp[gdp] / 1000</code></pre>
+
+        <h3>7️⃣ GDP in Millions (M)</h3>
+        <pre><code>GDP (M) =
+gdp[gdp] / 1000000</code></pre>
+
+        <h3>8️⃣ Previous Year GDP (Column Version)</h3>
+        <pre><code>Previous Year GDP =
+CALCULATE(
+    SUM(gdp[gdp]),
+    FILTER(gdp, gdp[country] = EARLIER(gdp[country]) 
+           &amp;&amp; gdp[year] = EARLIER(gdp[year]) - 1)
+)</code></pre>
+    </div>
+
+    <div class="section">
+        <h2>📝 Key Tasks for December 2</h2>
+
+        <div class="task-box">
+            <h3>1️⃣ Create the following calculated columns:</h3>
+            <ul>
+                <li>A. GDP Category (Low / Middle / High)</li>
+                <li>B. Decade (for trend grouping)</li>
+                <li>C. GDP Rounded (cleaner values)</li>
+            </ul>
+            <p>(Optional: add Century, GDP (K), GDP (M), or Previous Year GDP)</p>
+        </div>
+
+        <div class="task-box">
+            <h3>2️⃣ Create a Table Visual</h3>
+            <p>Include:</p>
+            <ul>
+                <li>Country</li>
+                <li>Year</li>
+                <li>GDP</li>
+                <li>GDP Category</li>
+                <li>Decade</li>
+            </ul>
+        </div>
+
+        <div class="task-box">
+            <h3>3️⃣ Create a Bar Chart: GDP by Decade</h3>
+            <p><strong>Axis:</strong> Decade<br>
+            <strong>Values:</strong> Total GDP</p>
+        </div>
+
+        <div class="task-box">
+            <h3>4️⃣ Create a Stacked Column Chart</h3>
+            <p><strong>GDP Category Distribution by Country</strong></p>
+            <ul>
+                <li>Axis: Country</li>
+                <li>Legend: GDP Category</li>
+                <li>Values: Count of Rows or Total GDP</li>
+            </ul>
+        </div>
+
+        <div class="task-box">
+            <h3>5️⃣ Add a Decade Slicer</h3>
+            <p>Allows intuitive filtering across time blocks.</p>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>💡 Closing Motivation</h2>
+        <p>Every task you complete strengthens your analytical thinking.  
+        Every column you create improves your modeling intuition.  
+        Every day you show up, you take another step toward Power BI mastery.</p>
+
+        <p><strong>Consistency &gt; intensity.</strong><br>
+        Keep going — you’re building real BI expertise.</p>
+    </div>
+
+</div>
+</body>
+</html>
