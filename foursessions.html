@@ -1,0 +1,1303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>SI Analytics — Free Power BI Training Series</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="SI Analytics Free Power BI Training Series — a 4-session, self-paced learning portal to take you from zero to building interactive Power BI dashboards." />
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --si-deep-blue: #0f172a;
+      --si-teal: #0f766e;
+      --si-gold: #facc15;
+      --si-light: #f9fafb;
+      --si-muted: #9ca3af;
+      --si-border: #1f2937;
+      --radius-lg: 18px;
+      --shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.45);
+      --max-width: 1120px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top left, #0f766e 0, #020617 40%, #020617 100%);
+      color: #e5e7eb;
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .page-shell {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      backdrop-filter: blur(18px);
+      background: linear-gradient(to right, rgba(2, 6, 23, 0.96), rgba(15, 23, 42, 0.96));
+      border-bottom: 1px solid rgba(148, 163, 184, 0.25);
+    }
+
+    .nav-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0.6rem 1.4rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .brand-mark {
+      width: 32px;
+      height: 32px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 30%, var(--si-gold), var(--si-teal));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: #020617;
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.2;
+    }
+
+    .brand-text span:first-child {
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .brand-text span:last-child {
+      font-size: 0.7rem;
+      color: var(--si-muted);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      font-size: 0.85rem;
+      color: #cbd5f5;
+    }
+
+    .nav-links a {
+      position: relative;
+      padding-bottom: 0.1rem;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -0.2rem;
+      width: 0;
+      height: 2px;
+      border-radius: 999px;
+      background: linear-gradient(to right, var(--si-gold), var(--si-teal));
+      transition: width 0.22s ease-out;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.42rem 0.9rem;
+      border-radius: 999px;
+      background: linear-gradient(120deg, var(--si-gold), var(--si-teal));
+      color: #020617;
+      font-size: 0.8rem;
+      font-weight: 600;
+      box-shadow: 0 10px 30px rgba(250, 204, 21, 0.45);
+      white-space: nowrap;
+    }
+
+    .nav-cta span {
+      font-size: 1rem;
+      line-height: 1;
+    }
+
+    main {
+      flex: 1;
+    }
+
+    .hero {
+      padding: 2.8rem 1.4rem 2rem;
+    }
+
+    .hero-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1.1fr);
+      gap: 2.3rem;
+      align-items: center;
+    }
+
+    @media (max-width: 900px) {
+      .hero-inner {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .hero-copy {
+      position: relative;
+    }
+
+    .hero-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.25rem 0.6rem;
+      border-radius: 999px;
+      background: rgba(15, 118, 110, 0.16);
+      border: 1px solid rgba(45, 212, 191, 0.4);
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #a5f3fc;
+      margin-bottom: 0.8rem;
+    }
+
+    .hero-pill span {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 30%, #bbf7d0, #22c55e);
+      box-shadow: 0 0 12px #22c55e;
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 3.2vw, 2.6rem);
+      line-height: 1.05;
+      margin-bottom: 0.7rem;
+    }
+
+    .hero h1 span.highlight {
+      background: linear-gradient(120deg, #facc15, #22c55e);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .hero-subtitle {
+      font-size: 0.95rem;
+      color: #e5e7eb;
+      max-width: 28rem;
+      margin-bottom: 1rem;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-bottom: 1.4rem;
+      font-size: 0.8rem;
+      color: var(--si-muted);
+    }
+
+    .hero-meta span {
+      padding: 0.18rem 0.6rem;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.8);
+      border: 1px solid rgba(75, 85, 99, 0.7);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.9rem;
+      align-items: center;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.7rem 1.3rem;
+      border-radius: 999px;
+      border: none;
+      background: linear-gradient(135deg, var(--si-gold), #f97316);
+      color: #111827;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 18px 40px rgba(234, 179, 8, 0.4);
+    }
+
+    .btn-primary span.icon {
+      font-size: 1.2rem;
+    }
+
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.55rem 1rem;
+      border-radius: 999px;
+      border: 1px solid rgba(156, 163, 175, 0.6);
+      background: rgba(15, 23, 42, 0.85);
+      color: #e5e7eb;
+      font-size: 0.85rem;
+      font-weight: 500;
+      cursor: pointer;
+    }
+
+    .btn-ghost span.icon {
+      font-size: 1rem;
+    }
+
+    .hero-footnote {
+      margin-top: 0.9rem;
+      font-size: 0.75rem;
+      color: var(--si-muted);
+    }
+
+    .hero-visual {
+      position: relative;
+      border-radius: 28px;
+      padding: 1.3rem;
+      background:
+        radial-gradient(circle at top, rgba(56, 189, 248, 0.18), transparent 55%),
+        radial-gradient(circle at bottom, rgba(250, 204, 21, 0.22), transparent 55%),
+        linear-gradient(145deg, #020617, #020617);
+      box-shadow: var(--shadow-soft);
+      overflow: hidden;
+    }
+
+    .hero-visual-main {
+      border-radius: 18px;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      padding: 1rem;
+      background: radial-gradient(circle at top left, rgba(15, 118, 110, 0.3), #020617);
+    }
+
+    .hero-visual-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.85rem;
+      font-size: 0.8rem;
+      color: #cbd5f5;
+    }
+
+    .hero-visual-dots {
+      display: flex;
+      gap: 0.3rem;
+    }
+
+    .hero-visual-dots span {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: rgba(148, 163, 184, 0.7);
+    }
+
+    .hero-visual-title {
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: #e5e7eb;
+    }
+
+    .hero-visual-tag {
+      padding: 0.18rem 0.55rem;
+      border-radius: 999px;
+      background: rgba(15, 118, 110, 0.4);
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .hero-visual-body {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 0.8rem;
+      align-items: flex-start;
+    }
+
+    .hero-metrics {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.5rem;
+      margin-bottom: 0.65rem;
+    }
+
+    .metric-card {
+      padding: 0.4rem 0.5rem;
+      border-radius: 12px;
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      background: rgba(15, 23, 42, 0.96);
+      font-size: 0.68rem;
+    }
+
+    .metric-label {
+      color: #9ca3af;
+      margin-bottom: 0.25rem;
+    }
+
+    .metric-value {
+      font-weight: 600;
+      font-size: 0.8rem;
+    }
+
+    .metric-value span {
+      font-weight: 400;
+      font-size: 0.68rem;
+      color: #9ca3af;
+      margin-left: 0.15rem;
+    }
+
+    .hero-mini-chart {
+      height: 56px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, rgba(94, 234, 212, 0.1), rgba(59, 130, 246, 0.08));
+      border: 1px solid rgba(59, 130, 246, 0.5);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-mini-chart::before {
+      content: "";
+      position: absolute;
+      inset: 16% 10% 18% 8%;
+      background:
+        linear-gradient(to right, rgba(148, 163, 184, 0.1) 1px, transparent 1px),
+        linear-gradient(to top, rgba(148, 163, 184, 0.15) 1px, transparent 1px);
+      background-size: 14px 14px;
+    }
+
+    .hero-mini-chart::after {
+      content: "";
+      position: absolute;
+      left: 6%;
+      right: 4%;
+      bottom: 16%;
+      height: 2px;
+      background: linear-gradient(90deg, #22c55e, #facc15, #f97316);
+      transform-origin: left;
+      transform: scaleX(1.05) skewY(-7deg);
+      box-shadow: 0 0 14px rgba(59, 130, 246, 0.6);
+    }
+
+    .hero-checklist {
+      font-size: 0.7rem;
+      color: #e5e7eb;
+      display: grid;
+      gap: 0.35rem;
+    }
+
+    .hero-checklist li {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .hero-checklist span.icon {
+      width: 14px;
+      height: 14px;
+      border-radius: 999px;
+      background: rgba(22, 163, 74, 0.18);
+      border: 1px solid #22c55e;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+    }
+
+    .hero-badge {
+      position: absolute;
+      right: 8px;
+      bottom: 8px;
+      padding: 0.25rem 0.6rem;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.96);
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      font-size: 0.7rem;
+      color: #e5e7eb;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .hero-badge span.icon {
+      font-size: 0.8rem;
+    }
+
+    /* Sections */
+
+    .section {
+      padding: 1.8rem 1.4rem 0.6rem;
+    }
+
+    .section-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+
+    .section-header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 1rem;
+      align-items: flex-end;
+      margin-bottom: 1.3rem;
+    }
+
+    .section-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+
+    .section-title span {
+      color: var(--si-gold);
+    }
+
+    .section-kicker {
+      font-size: 0.8rem;
+      color: var(--si-muted);
+      max-width: 26rem;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.1rem;
+    }
+
+    @media (max-width: 900px) {
+      .card-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 640px) {
+      .card-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .card {
+      border-radius: var(--radius-lg);
+      padding: 1rem;
+      background: radial-gradient(circle at top left, rgba(148, 163, 184, 0.12), rgba(15, 23, 42, 0.98));
+      border: 1px solid rgba(31, 41, 55, 0.9);
+      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.7);
+    }
+
+    .card-label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--si-muted);
+      margin-bottom: 0.2rem;
+    }
+
+    .card-heading {
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+      color: #e5e7eb;
+    }
+
+    .card-body {
+      font-size: 0.8rem;
+      color: #d1d5db;
+    }
+
+    .card-body ul {
+      padding-left: 1rem;
+      margin-top: 0.3rem;
+      display: grid;
+      gap: 0.25rem;
+    }
+
+    .card-body li::marker {
+      color: var(--si-gold);
+    }
+
+    .curriculum-note {
+      margin-top: 0.7rem;
+      font-size: 0.76rem;
+      color: var(--si-muted);
+    }
+
+    /* Sessions */
+
+    .sessions-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 1.6rem;
+    }
+
+    .session-card {
+      border-radius: 22px;
+      background: linear-gradient(130deg, rgba(15, 23, 42, 0.98), #020617);
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      padding: 1.1rem;
+      box-shadow: 0 18px 45px rgba(15, 23, 42, 0.95);
+    }
+
+    .session-header {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.75rem;
+    }
+
+    .session-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.2rem 0.7rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      font-size: 0.75rem;
+      color: #e5e7eb;
+    }
+
+    .session-badge span {
+      width: 16px;
+      height: 16px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 30%, var(--si-gold), var(--si-teal));
+    }
+
+    .session-title {
+      font-size: 0.98rem;
+      font-weight: 600;
+      margin-bottom: 0.1rem;
+    }
+
+    .session-meta {
+      font-size: 0.76rem;
+      color: var(--si-muted);
+    }
+
+    .session-body {
+      font-size: 0.8rem;
+      color: #d1d5db;
+      margin-bottom: 0.8rem;
+    }
+
+    .session-body ul {
+      margin-top: 0.35rem;
+      padding-left: 1rem;
+      display: grid;
+      gap: 0.2rem;
+    }
+
+    .session-body li::marker {
+      color: var(--si-gold);
+    }
+
+    .video-wrapper {
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid rgba(75, 85, 99, 0.9);
+      background: #020617;
+      aspect-ratio: 16 / 9;
+      margin-bottom: 0.8rem;
+    }
+
+    .video-wrapper iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    .session-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.78rem;
+    }
+
+    .btn-youtube {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.45rem 0.9rem;
+      border-radius: 999px;
+      border: 1px solid rgba(248, 113, 113, 0.7);
+      background: radial-gradient(circle at top left, rgba(248, 113, 113, 0.18), rgba(15, 23, 42, 0.9));
+      color: #fecaca;
+      font-weight: 500;
+    }
+
+    .btn-youtube span.icon {
+      font-size: 1rem;
+    }
+
+    .session-tagline {
+      color: var(--si-muted);
+    }
+
+    /* Outputs & How to Use */
+
+    .two-column {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+      gap: 1.3rem;
+    }
+
+    @media (max-width: 900px) {
+      .two-column {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .chip-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .chip {
+      padding: 0.2rem 0.6rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.8);
+      font-size: 0.72rem;
+      color: #e5e7eb;
+    }
+
+    .bullet-list {
+      font-size: 0.8rem;
+      color: #d1d5db;
+      padding-left: 1rem;
+      display: grid;
+      gap: 0.25rem;
+    }
+
+    .bullet-list li::marker {
+      color: var(--si-gold);
+    }
+
+    .step-list {
+      font-size: 0.8rem;
+      color: #d1d5db;
+      display: grid;
+      gap: 0.45rem;
+      counter-reset: steps;
+    }
+
+    .step-list li {
+      position: relative;
+      padding-left: 1.8rem;
+      list-style: none;
+    }
+
+    .step-list li::before {
+      counter-increment: steps;
+      content: counter(steps);
+      position: absolute;
+      left: 0;
+      top: 0.05rem;
+      width: 1.2rem;
+      height: 1.2rem;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 30%, var(--si-gold), var(--si-teal));
+      color: #020617;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+      font-weight: 700;
+      box-shadow: 0 8px 18px rgba(15, 23, 42, 0.6);
+    }
+
+    .faq {
+      margin-top: 1rem;
+      font-size: 0.8rem;
+      color: #d1d5db;
+      display: grid;
+      gap: 0.6rem;
+    }
+
+    .faq-item strong {
+      display: block;
+      margin-bottom: 0.1rem;
+    }
+
+    /* Footer */
+
+    footer {
+      padding: 1.4rem 1.4rem 2rem;
+      border-top: 1px solid rgba(31, 41, 55, 0.9);
+      background: radial-gradient(circle at top, rgba(15, 118, 110, 0.15), #020617);
+    }
+
+    .footer-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 0.9rem;
+      font-size: 0.75rem;
+      color: var(--si-muted);
+      align-items: center;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      text-decoration: underline;
+      text-decoration-color: rgba(148, 163, 184, 0.6);
+    }
+
+    @media (max-width: 640px) {
+      .nav-links {
+        display: none;
+      }
+      .hero {
+        padding-top: 1.7rem;
+      }
+      .hero-visual {
+        margin-top: 0.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="page-shell">
+  <header class="site-header">
+    <div class="nav-inner">
+      <div class="brand">
+        <div class="brand-mark">SI</div>
+        <div class="brand-text">
+          <span>SI Analytics</span>
+          <span>Free Power BI Training Series</span>
+        </div>
+      </div>
+      <nav class="nav-links">
+        <a href="#about">Overview</a>
+        <a href="#curriculum">Curriculum</a>
+        <a href="#sessions">Sessions</a>
+        <a href="#outputs">Outcomes</a>
+        <a href="#how-to-use">How to Use</a>
+        <a href="#sessions" class="nav-cta">
+          <span>▶</span> Start Watching
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero" id="top">
+      <div class="hero-inner">
+        <div class="hero-copy">
+          <div class="hero-pill">
+            <span></span>
+            Free • Self-Paced • No Sign-In
+          </div>
+          <h1>
+            From <span class="highlight">Zero</span> to Interactive
+            <span class="highlight">Power BI</span> Dashboard
+          </h1>
+          <p class="hero-subtitle">
+            A curated 4-session learning path from SI Analytics to help you load, clean, model, and visualize data in Power BI—at your own pace.
+          </p>
+          <div class="hero-meta">
+            <span>~10 Hours of Guided Training</span>
+            <span>Beginner-Friendly</span>
+            <span>Hands-On + Real Data</span>
+          </div>
+          <div class="hero-actions">
+            <a href="#sessions" class="btn-primary">
+              <span class="icon">▶</span>
+              Start with Session One
+            </a>
+            <a href="#curriculum" class="btn-ghost">
+              <span class="icon">📚</span>
+              View the 5-Module Curriculum
+            </a>
+          </div>
+          <p class="hero-footnote">
+            All videos are embedded below with direct links to YouTube for full-screen viewing.
+          </p>
+        </div>
+
+        <aside class="hero-visual" aria-hidden="true">
+          <div class="hero-visual-main">
+            <div class="hero-visual-header">
+              <div class="hero-visual-dots">
+                <span></span><span></span><span></span>
+              </div>
+              <div class="hero-visual-title">Power BI Learning Snapshot</div>
+              <div class="hero-visual-tag">Analytics for Impact</div>
+            </div>
+            <div class="hero-visual-body">
+              <div>
+                <div class="hero-metrics">
+                  <div class="metric-card">
+                    <div class="metric-label">Training Hours</div>
+                    <div class="metric-value">10<span>guided</span></div>
+                  </div>
+                  <div class="metric-card">
+                    <div class="metric-label">Skill Level</div>
+                    <div class="metric-value">Beginner<span>to builder</span></div>
+                  </div>
+                  <div class="metric-card">
+                    <div class="metric-label">Capstone</div>
+                    <div class="metric-value">1<span>dashboard</span></div>
+                  </div>
+                </div>
+                <div class="hero-mini-chart"></div>
+              </div>
+              <ul class="hero-checklist">
+                <li>
+                  <span class="icon">✔</span>
+                  Learn the interface, data loading, and cleaning.
+                </li>
+                <li>
+                  <span class="icon">✔</span>
+                  Build a clean data model and core DAX measures.
+                </li>
+                <li>
+                  <span class="icon">✔</span>
+                  Design and publish a professional interactive report.
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="hero-badge">
+            <span class="icon">📊</span>
+            Self-paced learning by SI Analytics
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- OVERVIEW -->
+    <section class="section" id="about">
+      <div class="section-inner">
+        <div class="section-header">
+          <div>
+            <h2 class="section-title">Why this <span>Power BI series</span>?</h2>
+          </div>
+          <p class="section-kicker">
+            This series curates four high-impact sessions into a single structured journey. No sign-in, no friction—just focused, practical learning you can apply immediately.
+          </p>
+        </div>
+        <div class="card-grid">
+          <article class="card">
+            <div class="card-label">Designed for beginners</div>
+            <h3 class="card-heading">Start from a clean slate</h3>
+            <div class="card-body">
+              No prior Power BI experience required. You’ll be guided through installation, interface, data loading, and cleaning using step-by-step walkthroughs.
+            </div>
+          </article>
+          <article class="card">
+            <div class="card-label">Hands-on & practical</div>
+            <h3 class="card-heading">Learn by doing</h3>
+            <div class="card-body">
+              Every session is built around real datasets, live demonstrations, and concrete tasks—so you see exactly how professional dashboards come together.
+            </div>
+          </article>
+          <article class="card">
+            <div class="card-label">Evidence-informed design</div>
+            <h3 class="card-heading">Built for analytics careers</h3>
+            <div class="card-body">
+              By the end of the series, you will have a portfolio-ready dashboard, a structured data model, and a solid foundation in DAX and data storytelling.
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- CURRICULUM -->
+    <section class="section" id="curriculum">
+      <div class="section-inner">
+        <div class="section-header">
+          <div>
+            <h2 class="section-title">The 5-Module <span>learning path</span></h2>
+          </div>
+          <p class="section-kicker">
+            Follow the sequence below to move from orientation to a complete interactive dashboard. The four embedded sessions map directly to the first four modules.
+          </p>
+        </div>
+        <div class="card-grid">
+          <article class="card">
+            <div class="card-label">Module 1</div>
+            <h3 class="card-heading">Introduction to Power BI + Data Loading & Cleaning</h3>
+            <div class="card-body">
+              Based on Session One.<br />
+              You’ll:
+              <ul>
+                <li>Install and open Power BI Desktop.</li>
+                <li>Understand the interface and key panes.</li>
+                <li>Connect to sample datasets.</li>
+                <li>Shape, clean, and transform data in Power Query.</li>
+              </ul>
+            </div>
+          </article>
+          <article class="card">
+            <div class="card-label">Module 2</div>
+            <h3 class="card-heading">Build a Simple Dashboard in 10 Minutes</h3>
+            <div class="card-body">
+              Based on Session Two.<br />
+              You’ll:
+              <ul>
+                <li>Create your first visualizations and KPIs.</li>
+                <li>Use slicers and filters for interactivity.</li>
+                <li>Lay out a clean one-page report.</li>
+              </ul>
+            </div>
+          </article>
+          <article class="card">
+            <div class="card-label">Module 3</div>
+            <h3 class="card-heading">Interface, Data Preparation & Best Practices</h3>
+            <div class="card-body">
+              Based on Session Three.<br />
+              You’ll:
+              <ul>
+                <li>Deepen your understanding of the Power BI interface.</li>
+                <li>Apply robust cleaning and preparation workflows.</li>
+                <li>Work with multiple tables and source files.</li>
+              </ul>
+            </div>
+          </article>
+          <article class="card">
+            <div class="card-label">Module 4</div>
+            <h3 class="card-heading">Data Modeling, Relationships & DAX Foundations</h3>
+            <div class="card-body">
+              Based on Session Four.<br />
+              You’ll:
+              <ul>
+                <li>Design a star schema with fact and dimension tables.</li>
+                <li>Create and troubleshoot relationships.</li>
+                <li>Write essential DAX measures (SUM, COUNT, CALCULATE, etc.).</li>
+              </ul>
+            </div>
+          </article>
+          <article class="card">
+            <div class="card-label">Module 5</div>
+            <h3 class="card-heading">Publishing, Storytelling & Capstone Dashboard</h3>
+            <div class="card-body">
+              Self-guided capstone based on what you’ve learned.<br />
+              You’ll:
+              <ul>
+                <li>Refine your visuals, themes, and report layout.</li>
+                <li>Publish to Power BI Service and explore sharing options.</li>
+                <li>Document your dashboard as a portfolio project.</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+        <p class="curriculum-note">
+          Tip: Treat each module as a dedicated study block. Pause frequently, replicate every step, and keep your own Power BI file evolving as you progress through the sessions.
+        </p>
+      </div>
+    </section>
+
+    <!-- SESSIONS -->
+    <section class="section" id="sessions">
+      <div class="section-inner">
+        <div class="section-header">
+          <div>
+            <h2 class="section-title">Watch the <span>training sessions</span></h2>
+          </div>
+          <p class="section-kicker">
+            Each session is embedded for distraction-free viewing. You can also open any video directly on YouTube for full-screen mode or to save to your playlist.
+          </p>
+        </div>
+
+        <div class="sessions-grid">
+
+          <!-- Session 1 -->
+          <article class="session-card" id="session-1">
+            <div class="session-header">
+              <div>
+                <div class="session-badge"><span></span> Session One • Module 1</div>
+                <h3 class="session-title">Power BI for Beginners: Full Hands-On Introduction Tutorial (Step-by-Step)</h3>
+                <p class="session-meta">
+                  Duration: ~2 hours • Focus: Interface, data loading, Power Query basics
+                </p>
+              </div>
+            </div>
+            <div class="session-body">
+              Start here if you are completely new to Power BI. This foundational walkthrough covers installation, navigation, and the full flow of connecting, transforming, and visualizing data.
+              <ul>
+                <li>Tour the Power BI Desktop interface and key views.</li>
+                <li>Connect to Excel or CSV data sources.</li>
+                <li>Clean and transform tables using Power Query.</li>
+                <li>Build initial charts and basic visuals.</li>
+              </ul>
+            </div>
+            <div class="video-wrapper">
+              <iframe src="https://www.youtube.com/embed/E-Y_dF85vfQ?rel=0"
+                      title="Power BI for Beginners: Full Hands-On Introduction Tutorial"
+                      allowfullscreen></iframe>
+            </div>
+            <div class="session-actions">
+              <a class="btn-youtube" href="https://www.youtube.com/watch?v=E-Y_dF85vfQ" target="_blank" rel="noopener">
+                <span class="icon">▶</span>
+                Watch Session One on YouTube
+              </a>
+              <p class="session-tagline">Recommendation: Pause often and reproduce every step in your own file.</p>
+            </div>
+          </article>
+
+          <!-- Session 2 -->
+          <article class="session-card" id="session-2">
+            <div class="session-header">
+              <div>
+                <div class="session-badge"><span></span> Session Two • Module 2</div>
+                <h3 class="session-title">Power BI Dashboard in 10 Minutes — Full Beginner Walkthrough</h3>
+                <p class="session-meta">
+                  Duration: ~40 minutes • Focus: Rapid dashboard build & layout
+                </p>
+              </div>
+            </div>
+            <div class="session-body">
+              Once you understand the basics, this session shows how to assemble a clean, compelling dashboard in minutes—using measures, visuals, and simple interactivity.
+              <ul>
+                <li>Build a one-page dashboard with KPIs and charts.</li>
+                <li>Use slicers and filters to let users explore the data.</li>
+                <li>Apply a simple layout strategy for readability.</li>
+              </ul>
+            </div>
+            <div class="video-wrapper">
+              <iframe src="https://www.youtube.com/embed/spUb73lRGTM?rel=0"
+                      title="Power BI Dashboard in 10 Minutes — Full Beginner Walkthrough"
+                      allowfullscreen></iframe>
+            </div>
+            <div class="session-actions">
+              <a class="btn-youtube" href="https://www.youtube.com/watch?v=spUb73lRGTM" target="_blank" rel="noopener">
+                <span class="icon">▶</span>
+                Watch Session Two on YouTube
+              </a>
+              <p class="session-tagline">Challenge: Rebuild the same dashboard using your own dataset.</p>
+            </div>
+          </article>
+
+          <!-- Session 3 -->
+          <article class="session-card" id="session-3">
+            <div class="session-header">
+              <div>
+                <div class="session-badge"><span></span> Session Three • Module 3</div>
+                <h3 class="session-title">Power BI for Beginners – Day 1: Interface, Importing Data, Cleaning & Preparation</h3>
+                <p class="session-meta">
+                  Duration: ~2 hours • Focus: Structured cleaning & preparation workflows
+                </p>
+              </div>
+            </div>
+            <div class="session-body">
+              This live-style Day 1 training reinforces your foundation with a more deliberate pace, multiple tables, and good habits for preparing analysis-ready data.
+              <ul>
+                <li>Review core interface concepts from a different angle.</li>
+                <li>Work with multiple datasets and table relationships.</li>
+                <li>Perform more advanced cleaning and transformation steps.</li>
+              </ul>
+            </div>
+            <div class="video-wrapper">
+              <iframe src="https://www.youtube.com/embed/kFBDr1LrHcg?rel=0"
+                      title="Power BI for Beginners – Day 1"
+                      allowfullscreen></iframe>
+            </div>
+            <div class="session-actions">
+              <a class="btn-youtube" href="https://www.youtube.com/watch?v=kFBDr1LrHcg" target="_blank" rel="noopener">
+                <span class="icon">▶</span>
+                Watch Session Three on YouTube
+              </a>
+              <p class="session-tagline">Tip: Keep notes on every transformation—you’ll reuse them in real projects.</p>
+            </div>
+          </article>
+
+          <!-- Session 4 -->
+          <article class="session-card" id="session-4">
+            <div class="session-header">
+              <div>
+                <div class="session-badge"><span></span> Session Four • Module 4</div>
+                <h3 class="session-title">Free Power BI Live Training – Day 2: Master Data Modeling, Relationships & DAX Foundations</h3>
+                <p class="session-meta">
+                  Duration: ~2+ hours • Focus: Star schema, relationships, & core DAX
+                </p>
+              </div>
+            </div>
+            <div class="session-body">
+              This session moves you into intermediate territory—clean data models and the DAX formulas that power serious analytics.
+              <ul>
+                <li>Design a star schema and clearly separate fact and dimension tables.</li>
+                <li>Create and troubleshoot relationships, cardinality, and filter direction.</li>
+                <li>Write essential DAX measures for KPIs and time-based analysis.</li>
+              </ul>
+            </div>
+            <div class="video-wrapper">
+              <iframe src="https://www.youtube.com/embed/2w2mUWDo44c?rel=0"
+                      title="Free Power BI Live Training – Day 2"
+                      allowfullscreen></iframe>
+            </div>
+            <div class="session-actions">
+              <a class="btn-youtube" href="https://www.youtube.com/watch?v=2w2mUWDo44c" target="_blank" rel="noopener">
+                <span class="icon">▶</span>
+                Watch Session Four on YouTube
+              </a>
+              <p class="session-tagline">Goal: By the end of this session, your model and measures should support a full capstone dashboard.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- OUTCOMES -->
+    <section class="section" id="outputs">
+      <div class="section-inner">
+        <div class="section-header">
+          <div>
+            <h2 class="section-title">What you’ll <span>build & achieve</span></h2>
+          </div>
+          <p class="section-kicker">
+            Treat this as a mini-bootcamp. If you complete all four sessions and a capstone, you will have a concrete artifact to show on LinkedIn, in interviews, or to your team.
+          </p>
+        </div>
+
+        <div class="two-column">
+          <article class="card">
+            <div class="card-label">Outputs</div>
+            <h3 class="card-heading">By the end of the series, you will have:</h3>
+            <div class="card-body">
+              <div class="chip-list">
+                <span class="chip">Interactive dashboard</span>
+                <span class="chip">Clean data model</span>
+                <span class="chip">Reusable DAX library</span>
+                <span class="chip">Portfolio project</span>
+              </div>
+              <ul class="bullet-list">
+                <li>A fully interactive, professionally designed Power BI dashboard.</li>
+                <li>A clean and structured data model built using star-schema principles.</li>
+                <li>Your own library of DAX measures for KPIs, trends, and comparisons.</li>
+                <li>A documented capstone report ready to showcase to employers or clients.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-label">Capabilities</div>
+            <h3 class="card-heading">You will be able to:</h3>
+            <div class="card-body">
+              <ul class="bullet-list">
+                <li>Load, clean, and transform data from multiple sources.</li>
+                <li>Design data models that support robust, scalable analysis.</li>
+                <li>Write and debug foundational DAX measures.</li>
+                <li>Tell a clear, compelling data story using dashboards and visuals.</li>
+                <li>Confidently support organizations with data-driven decisions.</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOW TO USE -->
+    <section class="section" id="how-to-use">
+      <div class="section-inner">
+        <div class="section-header">
+          <div>
+            <h2 class="section-title">How to use this <span>self-paced portal</span></h2>
+          </div>
+          <p class="section-kicker">
+            No log-ins. No registration. Just a structured path you can revisit any time. Here’s a simple way to build momentum and finish strong.
+          </p>
+        </div>
+
+        <div class="two-column">
+          <article class="card">
+            <div class="card-label">Study workflow</div>
+            <h3 class="card-heading">A simple 5-step learning loop</h3>
+            <ul class="step-list">
+              <li><strong>Preview the module.</strong> Read the curriculum notes above to understand what you’ll focus on in each session.</li>
+              <li><strong>Watch and replicate.</strong> Play the video, pause frequently, and reproduce every click and transformation in your own Power BI file.</li>
+              <li><strong>Experiment.</strong> Swap in your own dataset and adapt the visuals or measures to your context.</li>
+              <li><strong>Document.</strong> Keep a running note of DAX formulas, modeling choices, and design decisions.</li>
+              <li><strong>Publish your capstone.</strong> When your dashboard is ready, capture screenshots or a short screen-recording for your portfolio.</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <div class="card-label">FAQ</div>
+            <h3 class="card-heading">Common questions</h3>
+            <div class="faq">
+              <div class="faq-item">
+                <strong>Do I need prior experience?</strong>
+                No. The series assumes you are starting from scratch with Power BI.
+              </div>
+              <div class="faq-item">
+                <strong>What software do I need?</strong>
+                Power BI Desktop (free). Ideally, install the latest version before starting Session One.
+              </div>
+              <div class="faq-item">
+                <strong>Can I learn on mobile?</strong>
+                You can watch the videos on any device, but you’ll need a Windows laptop or desktop with Power BI Desktop to follow along hands-on.
+              </div>
+              <div class="faq-item">
+                <strong>How fast should I move?</strong>
+                Many learners complete one session per week. The key is consistency and hands-on practice, not speed.
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <p>© <span id="year"></span> SI Analytics — Free Power BI Training Series. All rights reserved.</p>
+      <div class="footer-links">
+        <a href="#top">Back to top</a>
+        <a href="#sessions">Start sessions</a>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<script>
+  // Lightweight year updater for the footer
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
